@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAND 5 | Event Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800&family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent-gold: #d4af37;
+            --deep-luxury: #2c1810;
+            --girly-accent: #ff85a1;
+            --warm-bg: #fdf6f0;
+            --text-brown: #7d5a61;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--warm-bg);
+            color: var(--text-brown);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 50px;
+            background: rgba(253, 246, 240, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--girly-accent);
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-brown); 
+            font-weight: 600; 
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-gold); }
+
+        /* --- SECTIONS --- */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 120px 10% 80px 10%;
+            position: relative;
+        }
+
+        /* --- HERO --- */
+        .hero-row { display: flex; align-items: center; width: 100%; min-height: 70vh; }
+        .hero-content { max-width: 600px; z-index: 10; position: relative; }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 1.1;
+            color: var(--girly-accent);
+            margin-bottom: 25px;
+        }
+        .hero-content h1 span { color: var(--accent-gold); }
+
+        .floating-image {
+            position: absolute;
+            right: 5%;
+            top: 15%;
+            width: 45%;
+            height: 75vh;
+            background-size: cover;
+            background-position: center;
+            border-radius: 200px 200px 0 0;
+            z-index: 1;
+            box-shadow: 15px 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* --- GALLERY GRID STYLES --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+            margin-top: 40px;
+        }
+        .scroll-item { 
+            background: white; 
+            padding: 15px; 
+            border-radius: 15px; 
+            text-align: center; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+        .scroll-item:hover { transform: translateY(-10px); }
+        .scroll-item img { width: 100%; height: 350px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
+        .scroll-item h3 { font-size: 1rem; color: var(--text-brown); }
+
+        /* --- SERVICES SECTION --- */
+        .services-wrapper { background-color: white; padding: 80px 10%; width: 100%; }
+        .services-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .service-card h2 { font-family: 'Cinzel', serif; color: var(--accent-gold); font-size: 1.6rem; margin-bottom: 10px; }
+        .service-card h3 { color: var(--girly-accent); font-size: 1rem; margin-bottom: 20px; font-style: italic; }
+        .quote-banner { grid-column: 1 / -1; text-align: center; padding: 30px; margin-top: 20px; font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--deep-luxury); border-top: 1px solid #f0f0f0; font-style: italic; }
+
+        /* --- CONTACT & FOOTER FIXED --- */
+        .footer-section { background-color: white; padding: 60px 10% 80px 10%; text-align: center; width: 100%; }
+        .contact-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; border-top: 1px solid #f0f0f0; padding-top: 50px; }
+        
+        .info-column h3 { 
+            font-family: 'Poppins', sans-serif; 
+            color: #7d5a61; 
+            font-size: 1.1rem; 
+            margin-bottom: 20px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+        }
+
+        .proprietor-label { font-size: 0.85rem; color: var(--text-brown); margin-top: 15px; display: block; }
+        .proprietor-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--accent-gold); display: block; }
+
+        .fb-logo {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            fill: #1877F2;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 15px;
+        }
+        .fb-logo:hover { transform: scale(1.2) rotate(5deg); filter: drop-shadow(0 5px 15px rgba(24, 119, 242, 0.4)); }
+
+        @media (max-width: 768px) {
+            .grid-container, .services-container, .contact-grid { grid-template-columns: 1fr; }
+            .floating-image { display: none; }
+            .section { padding: 100px 5%; }
+            nav { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">GRAND5 EVENT SERVICES</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gowns">Gowns</a></li>
+            <li><a href="#venues">Venues</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" id="home">
+        <div class="hero-row">
+            <div class="hero-content" data-aos="fade-right">
+                <h1>Let's make your <span>event</span> worth it.</h1>
+                <p>We believe that it's the little details that make a wedding or event truly special. Elegant, timeless, and uniquely yours.</p>
+                <br>
+                <a href="#contact" style="display: inline-block; padding: 15px 40px; background: var(--deep-luxury); color: white; text-decoration: none; border-radius: 5px; font-weight: 700; transition: 0.3s;" onmouseover="this.style.backgroundColor='#d4af37'" onmouseout="this.style.backgroundColor='#2c1810'">SET A MEETING</a>
+            </div>
+            <div class="floating-image" style="background-image: url(VENUE3.JPG);" data-aos="fade-left"></div>
+        </div>
+    </section>
+
+    <section class="section" id="gowns" style="background: white;">
+        <h2 style="font-family: 'Cinzel'; margin-bottom: 20px; font-size: 2.5rem; text-align: center;" data-aos="fade-up">The Gown Collection</h2>
+        <div class="grid-container">
+            <div class="scroll-item" data-aos="zoom-in" data-aos-delay="100"><img src="GOWN1.JPG" alt="Gown"></div>
+            <div class="scroll-item" data-aos="zoom-in" data-aos-delay="200"><img src="GOWN2.JPG" alt="Gown"></div>
+            <div class="scroll-item" data-aos="zoom-in" data-aos-delay="300"><img src="GOWN3.JPG" alt="Gown"></div>
+        </div>
+    </section>
+
+    <section class="section" id="venues">
+        <h2 style="font-family: 'Cinzel'; margin-bottom: 20px; font-size: 2.5rem; text-align: center;" data-aos="fade-up">Our Venues</h2>
+        <div class="grid-container">
+            <div class="scroll-item" data-aos="fade-up"><img src="VENUE1.JPG" alt="Venue"></div>
+            <div class="scroll-item" data-aos="fade-up" data-aos-delay="100"><img src="VENUE2.JPG" alt="Venue"></div>
+            <div class="scroll-item" data-aos="fade-up" data-aos-delay="200"><img src="VENUE3.JPG" alt="Venue"></div>
+            <div class="scroll-item" data-aos="fade-up"><img src="VENUE4.JPG" alt="Venue"></div>
+            <div class="scroll-item" data-aos="fade-up" data-aos-delay="100"><img src="VENUE5.JPG" alt="Venue"></div>
+            <div class="scroll-item" data-aos="fade-up" data-aos-delay="200"><img src="VENUE6.JPG" alt="Venue"></div>
+            <div class="scroll-item" data-aos="fade-up"><img src="VENUE7.JPG" alt="Venue"></div>
+            <div class="scroll-item" data-aos="fade-up" data-aos-delay="100"><img src="VENUE8.JPG" alt="Venue"></div>
+        </div>
+    </section>
+
+    <div class="services-wrapper" id="services">
+        <div class="services-container">
+            <div class="service-card" data-aos="fade-right">
+                <h2>Venue Styling Services</h2>
+                <h3>Transform your celebration into an unforgettable experience.</h3>
+                <p>At Grand5 Events Services, we design elegant, creative, and fully customized event setups for weddings, birthdays, corporate events, and more.</p>
+            </div>
+            <div class="service-card" data-aos="fade-left">
+                <h2>Gown & Entourage Rentals</h2>
+                <h3>Look stunning for your most important milestones.</h3>
+                <p>We offer a curated selection of gown rentals and entourage outfits crafted to make you feel confident and beautiful.</p>
+            </div>
+            <div class="quote-banner" data-aos="zoom-in">
+                "From venue to wardrobe, we bring your dream event to life."
+            </div>
+        </div>
+    </div>
+
+    <section class="footer-section" id="contact">
+        <div class="contact-grid">
+            <div class="info-column" data-aos="fade-up">
+                <h3>Contact Us</h3>
+                <p>Glenda Medrano: +63 912 844 9987</p>
+                <span class="proprietor-label">Proprietor:</span>
+                <span class="proprietor-name">Maria Angelica Vogel</span>
+            </div>
+            <div class="info-column" data-aos="fade-up" data-aos-delay="100">
+                <h3>Visit us</h3>
+                <p>Purok 1 Sta. Isabela Sur</p>
+                <p>Iligan City, Isabela</p>
+            </div>
+            <div class="info-column" data-aos="fade-up" data-aos-delay="200">
+                <h3>Get in Touch</h3>
+                <p style="font-size: 0.95rem; line-height: 1.5;">For inquiries and booking, please contact us through our Facebook page</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/1L2fbFTMh4/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+                        <svg class="fb-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
+</body>
+</html>
